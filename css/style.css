@@ -3592,3 +3592,58 @@ th {
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.listing-layout{
+    display:block;
+}
+
+.section-head{
+    position:relative;
+}
+
+.filter-dropdown{
+    position:relative;
+}
+
+.filter-menu{
+
+    position:absolute;
+
+    top:50px;
+
+    right:0;
+
+    width:260px;
+
+    display:none;
+
+    z-index:1000;
+}
+
+.filter-dropdown.is-open .filter-menu{
+
+    display:grid;
+}
