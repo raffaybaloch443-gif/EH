@@ -1,0 +1,29 @@
+.contact-modal {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: rgba(0, 0, 0, .5)
+}
+
+.contact-modal[hidden] {
+    display: none
+}
+
+.contact-modal__panel {
+    background: #fff;
+    padding: 24px;
+    border-radius: 8px;
+    max-width: 450px;
+    width: 95%
+}
+
+.contact-modal__actions,
+.contact-modal__form {
+    display: grid;
+    gap: 10px
+}
+
+.contact-modal__actions {
+    grid-template-columns: repeat(3, 1fr)
+}

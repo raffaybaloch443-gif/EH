@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EstateHub - Register</title><link rel="stylesheet" href="./css/style.css"></head>
+<body>
+  <header class="topbar"><a class="brand" href="index.html"><span class="brand-icon">&#8962;</span>EstateHub</a><nav class="nav">
+    <a href="login.html">Login</a>
+    <a href="register.html" class="active">Register</a>
+</nav></header>
+  <main class="auth-wrap">
+   <form class="auth-card" id="registerForm">
+      <h1>Register</h1><p class="muted" style="text-align:center">Create your account</p>
+      <div class="tabs"><button type="button" class="active">Buyer</button><button type="button">Seller</button></div>
+      <div class="form-stack">
+        <div class="field"><label>Full Name</label><input id="fullName" type="text" placeholder="Enter full name" required></div>
+        <div class="field"><label>Email Address</label><input id="email" type="email" placeholder="Enter email address" required></div>
+        <div class="field"><label>Phone Number</label><input id="phone" type="text" placeholder="Enter phone number" required></div>
+        <div class="field"><label>Password</label><input id="password" type="password" placeholder="Enter password" required></div>
+        <div class="field"><label>Confirm Password</label><input id="confirmPassword" type="password" placeholder="Confirm password" required></div>
+        <label class="checkline"><input type="checkbox"> I agree to the Terms & Conditions</label>
+        <button class="btn" type="submit">Register</button>
+        <p class="muted" style="text-align:center">Already have an account? <a href="login.html">Login</a></p>
+      </div>
+    </form>
+  </main>
+ <script src="./js/script.js"></script>
+<script src="./js/register.js"></script>
+</body>
+</html>

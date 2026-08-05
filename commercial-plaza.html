@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commercial Plazas</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            padding: 40px 0;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .property-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .1);
+        }
+
+        .property-img {
+            height: 220px;
+            background: #d9d9d9;
+            position: relative;
+        }
+
+        .tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #28a745;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .property-body {
+            padding: 15px;
+        }
+
+        .facts {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .price {
+            color: #007bff;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1 class="heading">Commercial Plazas</h1>
+
+        <div class="grid-3">
+
+            <!-- Card 1 -->
+            <article class="property-card" onclick="window.location.href='property-info.html?id=21'"
+                style="cursor:pointer;">
+                <div class="property-img"><img
+                        src="assets/img/photo-1486406146926-c627a92ad1ab-w1200-q80.jpg"
+                        alt=""><span class="tag">For Sale</span></div>
+                <div class="property-body">
+                    <h3>Commercial Plaza 1</h3>
+                    <p>Islamabad</p>
+                    <div class="facts">
+                        <span>3 Floors</span>
+                        <span>12 Shops</span>
+                    </div>
+                    <p class="price">PKR 8 Crore</p>
+                </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="property-card" onclick="window.location.href='property-info.html?id=22'"
+                style="cursor:pointer;">
+                <div class="property-img"><img
+                        src="assets/img/photo-1497366754035-f200968a6e72-w1200-q80.jpg"
+                        alt=""><span class="tag">For Sale</span></div>
+                <div class="property-body">
+                    <h3>Commercial Plaza 2</h3>
+                    <p>Islamabad</p>
+                    <div class="facts">
+                        <span>4 Floors</span>
+                        <span>16 Shops</span>
+                    </div>
+                    <p class="price">PKR 9 Crore</p>
+                </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="property-card" onclick="window.location.href='property-info.html?id=23'"
+                style="cursor:pointer;">`
+                <div class="property-img"><img
+                        src="assets/img/photo-1460317442991-0ec209397118-w1200-q80.jpg"
+                        alt=""><span class="tag">For Sale</span></div>
+                <div class="property-body">
+                    <h3>Commercial Plaza 3</h3>
+                    <p>Islamabad</p>
+                    <div class="facts">
+                        <span>5 Floors</span>
+                        <span>20 Shops</span>
+                    </div>
+                    <p class="price">PKR 10 Crore</p>
+                </div>
+            </article>
+
+            <!-- Card 4 -->
+            <article class="property-card" onclick="window.location.href='property-info.html?id=24'"
+                style="cursor:pointer;">
+                <div class="property-img"><img
+                        src="assets/img/photo-1448630360428-65456885c650-w1200-q80.jpg"
+                        alt=""><span class="tag">For Sale</span></div>
+                <div class="property-body">
+                    <h3>Commercial Plaza 4</h3>
+                    <p>Islamabad</p>
+                    <div class="facts">
+                        <span>4 Floors</span>
+                        <span>18 Shops</span>
+                    </div>
+                    <p class="price">PKR 11 Crore</p>
+                </div>
+            </article>
+
+            <!-- Card 5 -->
+            <article class="property-card" onclick="window.location.href='property-info.html?id=25'"
+                style="cursor:pointer;">
+                <div class="property-img"><img
+                        src="assets/img/photo-1511818966892-d7d671e672a2-w1200-q80.jpg"
+                        alt=""><span class="tag">For Sale</span></div>
+                <div class="property-body">
+                    <h3>Commercial Plaza 5</h3>
+                    <p>Islamabad</p>
+                    <div class="facts">
+                        <span>6 Floors</span>
+                        <span>24 Shops</span>
+                    </div>
+                    <p class="price">PKR 12 Crore</p>
+                </div>
+            </article>
+            <!-- Card 6 -->
+            <article class="property-card" onclick="window.location.href='property-info.html?id=26'"
+                style="cursor:pointer;">
+                <div class="property-img"><img
+                        src="assets/img/photo-1497366811353-6870744d04b2-w1200-q80.jpg"
+                        alt=""><span class="tag">For Sale</span></div>
+                <div class="property-body">
+                    <h3>Commercial Plaza 6</h3>
+                    <p>Islamabad</p>
+                    <div class="facts">
+                        <span>5 Floors</span>
+                        <span>22 Shops</span>
+                    </div>
+                    <p class="price">PKR 13 Crore</p>
+                </div>
+            </article>
+
+            <!-- Card 7 -->
+            <article class="property-card" onclick="window.location.href='property-info.html?id=27'"
+                style="cursor:pointer;">
+                <div class="property-img"><img
+                        src="assets/img/photo-1486406146926-c627a92ad1ab-w1200-q80.jpg"
+                        alt=""><span class="tag">For Sale</span></div>
+                <div class="property-body">
+                    <h3>Commercial Plaza 7</h3>
+                    <p>Islamabad</p>
+                    <div class="facts">
+                        <span>6 Floors</span>
+                        <span>26 Shops</span>
+                    </div>
+                    <p class="price">PKR 14 Crore</p>
+                </div>
+            </article>
+
+            <!-- Card 8 -->
+            <article class="property-card" onclick="window.location.href='property-info.html?id=28'"
+                style="cursor:pointer;">
+                <div class="property-img"><img
+                        src="assets/img/photo-1448630360428-65456885c650-w1200-q80.jpg"
+                        alt=""><span class="tag">For Sale</span></div>
+                <div class="property-body">
+                    <h3>Commercial Plaza 8</h3>
+                    <p>Islamabad</p>
+                    <div class="facts">
+                        <span>7 Floors</span>
+                        <span>30 Shops</span>
+                    </div>
+                    <p class="price">PKR 15 Crore</p>
+                </div>
+            </article>
+
+            <!-- Card 9 -->
+            <article class="property-card" onclick="window.location.href='property-info.html?id=29'"
+                style="cursor:pointer;">
+                <div class="property-img"><img
+                        src="assets/img/photo-1497366754035-f200968a6e72-w1200-q80.jpg"
+                        alt=""><span class="tag">For Sale</span></div>
+                <div class="property-body">
+                    <h3>Commercial Plaza 9</h3>
+                    <p>Islamabad</p>
+                    <div class="facts">
+                        <span>8 Floors</span>
+                        <span>32 Shops</span>
+                    </div>
+                    <p class="price">PKR 16 Crore</p>
+                </div>
+            </article>
+
+            <!-- Card 10 -->
+            <article class="property-card" onclick="window.location.href='property-info.html?id=30'"
+                style="cursor:pointer;">
+                <div class="property-img"><img
+                        src="assets/img/photo-1511818966892-d7d671e672a2-w1200-q80.jpg"
+                        alt=""><span class="tag">For Sale</span></div>
+                <div class="property-body">
+                    <h3>Commercial Plaza 10</h3>
+                    <p>Islamabad</p>
+                    <div class="facts">
+                        <span>10 Floors</span>
+                        <span>40 Shops</span>
+                    </div>
+                    <p class="price">PKR 18 Crore</p>
+                </div>
+            </article>
+
+        </div>
+
+    </div>
+
+  <script src="./js/script.js"></script>
+</body>
+
+</html>

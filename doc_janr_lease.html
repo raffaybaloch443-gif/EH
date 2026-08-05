@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Real Estate Document Generator</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f4f6fb;
+      color: #222;
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    header {
+      background: #1a3a5c;
+      color: #fff;
+      padding: 28px 0 18px;
+      text-align: center;
+    }
+    header h1 { font-size: 26px; font-weight: 700; letter-spacing: 1px; }
+    header p { font-size: 14px; color: #b0c8e8; margin-top: 5px; }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      padding: 24px 0 0;
+      background: #f4f6fb;
+    }
+    .tab-btn {
+      padding: 12px 38px;
+      border: 2px solid #1a3a5c;
+      border-radius: 8px;
+      background: #fff;
+      color: #1a3a5c;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.17s;
+    }
+    .tab-btn.active {
+      background: #1a3a5c;
+      color: #fff;
+    }
+    .tab-btn:hover:not(.active) {
+      background: #e8eef6;
+    }
+
+    .main { max-width: 820px; margin: 0 auto; padding: 28px 16px 48px; }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .form-card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #dde4f0;
+      padding: 22px 24px 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 1px 4px rgba(26,58,92,0.05);
+    }
+
+    .section-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #1a3a5c;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1.5px solid #dde4f0;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    .full { grid-column: 1 / -1; }
+
+    .field { display: flex; flex-direction: column; gap: 4px; }
+    .field label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #5a6a80;
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      border: 1px solid #c8d3e6;
+      border-radius: 7px;
+      padding: 9px 11px;
+      font-size: 14px;
+      color: #222;
+      background: #f9fafc;
+      font-family: inherit;
+      transition: border 0.15s;
+      outline: none;
+    }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: #1a3a5c;
+      background: #fff;
+    }
+    .field textarea { resize: vertical; min-height: 60px; }
+
+    .download-btn {
+      width: 100%;
+      padding: 15px;
+      background: #1a3a5c;
+      color: #fff;
+      border: none;
+      border-radius: 9px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 6px;
+      letter-spacing: 0.02em;
+      transition: background 0.15s;
+    }
+    .download-btn:hover { background: #274e7a; }
+    .download-btn svg { width: 20px; height: 20px; fill: none; stroke: #fff; stroke-width: 2.2; }
+
+    @media (max-width: 600px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .full { grid-column: 1; }
+      .tabs { flex-direction: column; align-items: center; }
+      .tab-btn { width: 85%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Real Estate Document Generator</h1>
+  <p>Fill in the details — your legal document will be ready to download instantly</p>
+</header>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('sale')">&#x1F3E0; Sale Agreement</button>
+  <button class="tab-btn" onclick="switchTab('rent')">&#x1F511; Rent Agreement</button>
+</div>
+
+<div class="main">
+
+  <!-- ========== SALE AGREEMENT ========== -->
+  <div id="sale-tab" class="tab-content active">
+
+    <div class="form-card">
+      <div class="section-title">Seller Details (Party 1)</div>
+      <div class="grid-2">
+        <div class="field"><label>Full Name</label><input id="s_seller_name" placeholder="e.g. Muhammad Ali"></div>
+        <div class="field"><label>CNIC Number</label><input id="s_seller_cnic" placeholder="42201-1234567-1"></div>
+        <div class="field"><label>Phone Number</label><input id="s_seller_phone" placeholder="0300-1234567"></div>
+        <div class="field"><label>Email Address</label><input id="s_seller_email" placeholder="ali@email.com"></div>
+        <div class="field full"><label>Residential Address</label><textarea id="s_seller_address" placeholder="Full address of the seller..."></textarea></div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="section-title">Buyer Details (Party 2)</div>
+      <div class="grid-2">
+        <div class="field"><label>Full Name</label><input id="s_buyer_name" placeholder="e.g. Ahmed Khan"></div>
+        <div class="field"><label>CNIC Number</label><input id="s_buyer_cnic" placeholder="42201-7654321-2"></div>
+        <div class="field"><label>Phone Number</label><input id="s_buyer_phone" placeholder="0321-7654321"></div>
+        <div class="field"><label>Email Address</label><input id="s_buyer_email" placeholder="ahmed@email.com"></div>
+        <div class="field full"><label>Residential Address</label><textarea id="s_buyer_address" placeholder="Full address of the buyer..."></textarea></div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="section-title">Property Details</div>
+      <div class="grid-2">
+        <div class="field full"><label>Property Full Address</label><textarea id="s_prop_address" placeholder="Plot No., Street, Sector/Block, City..."></textarea></div>
+        <div class="field"><label>Plot Size</label><input id="s_plot_size" placeholder="e.g. 5 Marla / 10 Marla"></div>
+        <div class="field"><label>Property Type</label>
+          <select id="s_prop_type">
+            <option>Residential</option>
+            <option>Commercial</option>
+            <option>Agricultural</option>
+            <option>Industrial</option>
+          </select>
+        </div>
+        <div class="field"><label>Khasra / Survey No. (Optional)</label><input id="s_khasra" placeholder="Optional"></div>
+        <div class="field"><label>Registry / Fard No. (Optional)</label><input id="s_fard" placeholder="Optional"></div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="section-title">Transaction Details</div>
+      <div class="grid-3">
+        <div class="field"><label>Total Sale Price (PKR)</label><input id="s_total_price" placeholder="e.g. 5,000,000"></div>
+        <div class="field"><label>Advance Amount (PKR)</label><input id="s_advance" placeholder="e.g. 1,000,000"></div>
+        <div class="field"><label>Remaining Amount (PKR)</label><input id="s_remaining" placeholder="e.g. 4,000,000"></div>
+        <div class="field"><label>Agreement Date</label><input id="s_date" type="date"></div>
+        <div class="field"><label>Registry Date</label><input id="s_reg_date" type="date"></div>
+        <div class="field"><label>Possession Date</label><input id="s_possession_date" type="date"></div>
+      </div>
+    </div>
+
+    <button class="download-btn" onclick="generateSalePDF()">
+      <svg viewBox="0 0 24 24"><path d="M12 3v13M7 11l5 5 5-5M5 21h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Download Sale Agreement (PDF)
+    </button>
+  </div>
+
+  <!-- ========== RENT AGREEMENT ========== -->
+  <div id="rent-tab" class="tab-content">
+
+    <div class="form-card">
+      <div class="section-title">Landlord Details (Property Owner)</div>
+      <div class="grid-2">
+        <div class="field"><label>Full Name</label><input id="r_landlord_name" placeholder="e.g. Muhammad Ali"></div>
+        <div class="field"><label>CNIC Number</label><input id="r_landlord_cnic" placeholder="42201-1234567-1"></div>
+        <div class="field"><label>Phone Number</label><input id="r_landlord_phone" placeholder="0300-1234567"></div>
+        <div class="field"><label>Email Address</label><input id="r_landlord_email" placeholder="ali@email.com"></div>
+        <div class="field full"><label>Residential Address</label><textarea id="r_landlord_address" placeholder="Full address of the landlord..."></textarea></div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="section-title">Tenant Details</div>
+      <div class="grid-2">
+        <div class="field"><label>Full Name</label><input id="r_tenant_name" placeholder="e.g. Ahmed Khan"></div>
+        <div class="field"><label>CNIC Number</label><input id="r_tenant_cnic" placeholder="42201-7654321-2"></div>
+        <div class="field"><label>Phone Number</label><input id="r_tenant_phone" placeholder="0321-7654321"></div>
+        <div class="field"><label>Email Address</label><input id="r_tenant_email" placeholder="ahmed@email.com"></div>
+        <div class="field full"><label>Residential Address</label><textarea id="r_tenant_address" placeholder="Full address of the tenant..."></textarea></div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="section-title">Property Details</div>
+      <div class="grid-2">
+        <div class="field full"><label>Property Full Address</label><textarea id="r_prop_address" placeholder="Plot No., Street, Sector/Block, City..."></textarea></div>
+        <div class="field"><label>Property Type</label>
+          <select id="r_prop_type">
+            <option>Residential</option>
+            <option>Commercial</option>
+            <option>Shop</option>
+            <option>Office</option>
+          </select>
+        </div>
+        <div class="field"><label>Floor / Unit (Optional)</label><input id="r_unit" placeholder="e.g. Ground Floor / 1st Floor"></div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="section-title">Rental Terms</div>
+      <div class="grid-3">
+        <div class="field"><label>Monthly Rent (PKR)</label><input id="r_rent" placeholder="e.g. 25,000"></div>
+        <div class="field"><label>Security Deposit (PKR)</label><input id="r_deposit" placeholder="e.g. 50,000"></div>
+        <div class="field"><label>Lease Duration</label>
+          <select id="r_duration">
+            <option>6 Months</option>
+            <option>1 Year</option>
+            <option>2 Years</option>
+            <option>3 Years</option>
+          </select>
+        </div>
+        <div class="field"><label>Start Date</label><input id="r_start_date" type="date"></div>
+        <div class="field"><label>Rent Due Date</label>
+          <select id="r_pay_date">
+            <option>1st of every month</option>
+            <option>5th of every month</option>
+            <option>10th of every month</option>
+          </select>
+        </div>
+        <div class="field"><label>Annual Rent Increase (%)</label><input id="r_increase" placeholder="e.g. 10%"></div>
+      </div>
+    </div>
+
+    <button class="download-btn" onclick="generateRentPDF()">
+      <svg viewBox="0 0 24 24"><path d="M12 3v13M7 11l5 5 5-5M5 21h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Download Rent Agreement (PDF)
+    </button>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', (tab === 'sale' && i === 0) || (tab === 'rent' && i === 1));
+  });
+  document.getElementById('sale-tab').classList.toggle('active', tab === 'sale');
+  document.getElementById('rent-tab').classList.toggle('active', tab === 'rent');
+}
+
+function v(id) { return document.getElementById(id)?.value?.trim() || '_______________'; }
+
+function fmtDate(d) {
+  if (!d || d === '_______________') return '_______________';
+  const x = new Date(d);
+  return x.toLocaleDateString('en-PK', { day: '2-digit', month: 'long', year: 'numeric' });
+}
+
+function generateSalePDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+  const lm = 20, rm = 190, lw = 170;
+
+  // Header
+  doc.setFillColor(26, 58, 92);
+  doc.rect(0, 0, 210, 38, 'F');
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(18);
+  doc.setTextColor(255, 255, 255);
+  doc.text('SALE AGREEMENT', 105, 16, { align: 'center' });
+  doc.setFontSize(11);
+  doc.setFont('helvetica', 'normal');
+  doc.text('Property Sale & Purchase Contract', 105, 25, { align: 'center' });
+  doc.setFontSize(10);
+  doc.text('Date: ' + fmtDate(v('s_date')), 105, 33, { align: 'center' });
+
+  let y = 48;
+
+  function section(title) {
+    doc.setFillColor(232, 238, 248);
+    doc.rect(lm, y - 4, lw, 8, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10);
+    doc.setTextColor(26, 58, 92);
+    doc.text(title, lm + 2, y + 1);
+    y += 10;
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(10);
+    doc.setTextColor(40, 40, 40);
+  }
+
+  function row(label, val) {
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(90, 106, 128);
+    doc.text(label + ':', lm, y);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(30, 30, 30);
+    const lines = doc.splitTextToSize(val, lw - 58);
+    doc.text(lines, lm + 56, y);
+    y += lines.length * 5.5 + 1;
+  }
+
+  section('SELLER DETAILS (Party 1)');
+  row('Full Name', v('s_seller_name'));
+  row('CNIC Number', v('s_seller_cnic'));
+  row('Phone Number', v('s_seller_phone'));
+  row('Email Address', v('s_seller_email'));
+  row('Residential Address', v('s_seller_address'));
+  y += 3;
+
+  section('BUYER DETAILS (Party 2)');
+  row('Full Name', v('s_buyer_name'));
+  row('CNIC Number', v('s_buyer_cnic'));
+  row('Phone Number', v('s_buyer_phone'));
+  row('Email Address', v('s_buyer_email'));
+  row('Residential Address', v('s_buyer_address'));
+  y += 3;
+
+  section('PROPERTY DETAILS');
+  row('Property Address', v('s_prop_address'));
+  row('Plot Size', v('s_plot_size'));
+  row('Property Type', v('s_prop_type'));
+  if (v('s_khasra') !== '_______________') row('Khasra / Survey No.', v('s_khasra'));
+  if (v('s_fard') !== '_______________') row('Registry / Fard No.', v('s_fard'));
+  y += 3;
+
+  section('TRANSACTION DETAILS');
+  row('Total Sale Price', 'PKR ' + v('s_total_price'));
+  row('Advance Payment', 'PKR ' + v('s_advance'));
+  row('Remaining Amount', 'PKR ' + v('s_remaining'));
+  row('Agreement Date', fmtDate(v('s_date')));
+  row('Registry Date', fmtDate(v('s_reg_date')));
+  row('Possession Date', fmtDate(v('s_possession_date')));
+  y += 3;
+
+  section('TERMS & CONDITIONS');
+  const terms = [
+    '1. The Seller confirms that the property is free from all legal encumbrances, disputes, and liabilities.',
+    '2. The advance amount has been received by the Seller. The remaining balance shall be paid on the date of registry.',
+    '3. All outstanding dues, utility bills, and property taxes up to the registry date shall be the Seller\'s responsibility.',
+    '4. In case of any legal complication arising before registry, the Seller shall be fully liable.',
+    '5. This agreement has been executed with the free will of both parties and is legally binding.',
+    '6. Any dispute arising from this agreement shall be resolved through the competent courts of jurisdiction.',
+  ];
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9.5);
+  doc.setTextColor(40, 40, 40);
+  terms.forEach(t => {
+    const lines = doc.splitTextToSize(t, lw);
+    doc.text(lines, lm, y);
+    y += lines.length * 5 + 2;
+  });
+
+  // Signature section
+  y += 6;
+  doc.setDrawColor(180, 180, 200);
+  doc.setLineWidth(0.4);
+  doc.line(lm, y + 14, lm + 65, y + 14);
+  doc.line(rm - 65, y + 14, rm, y + 14);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(9);
+  doc.setTextColor(26, 58, 92);
+  doc.text('Seller Signature', lm, y + 19);
+  doc.text('Buyer Signature', rm - 65, y + 19);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9);
+  doc.setTextColor(60, 60, 60);
+  doc.text(v('s_seller_name'), lm, y + 25);
+  doc.text(v('s_buyer_name'), rm - 65, y + 25);
+  doc.text('CNIC: ' + v('s_seller_cnic'), lm, y + 30);
+  doc.text('CNIC: ' + v('s_buyer_cnic'), rm - 65, y + 30);
+
+  // Footer
+  doc.setFontSize(8);
+  doc.setTextColor(150, 150, 150);
+  doc.text('This document was generated electronically and is subject to applicable laws of Pakistan.', 105, 288, { align: 'center' });
+
+  doc.save('Sale_Agreement.pdf');
+}
+
+function generateRentPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+  const lm = 20, rm = 190, lw = 170;
+
+  // Header
+  doc.setFillColor(15, 90, 60);
+  doc.rect(0, 0, 210, 38, 'F');
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(18);
+  doc.setTextColor(255, 255, 255);
+  doc.text('RENT AGREEMENT', 105, 16, { align: 'center' });
+  doc.setFontSize(11);
+  doc.setFont('helvetica', 'normal');
+  doc.text('Tenancy / Lease Contract', 105, 25, { align: 'center' });
+  doc.setFontSize(10);
+  doc.text('Start Date: ' + fmtDate(v('r_start_date')), 105, 33, { align: 'center' });
+
+  let y = 48;
+
+  function section(title) {
+    doc.setFillColor(220, 240, 230);
+    doc.rect(lm, y - 4, lw, 8, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10);
+    doc.setTextColor(15, 90, 60);
+    doc.text(title, lm + 2, y + 1);
+    y += 10;
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(10);
+    doc.setTextColor(40, 40, 40);
+  }
+
+  function row(label, val) {
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(90, 106, 128);
+    doc.text(label + ':', lm, y);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(30, 30, 30);
+    const lines = doc.splitTextToSize(val, lw - 58);
+    doc.text(lines, lm + 56, y);
+    y += lines.length * 5.5 + 1;
+  }
+
+  section('LANDLORD DETAILS (Property Owner)');
+  row('Full Name', v('r_landlord_name'));
+  row('CNIC Number', v('r_landlord_cnic'));
+  row('Phone Number', v('r_landlord_phone'));
+  row('Email Address', v('r_landlord_email'));
+  row('Residential Address', v('r_landlord_address'));
+  y += 3;
+
+  section('TENANT DETAILS');
+  row('Full Name', v('r_tenant_name'));
+  row('CNIC Number', v('r_tenant_cnic'));
+  row('Phone Number', v('r_tenant_phone'));
+  row('Email Address', v('r_tenant_email'));
+  row('Residential Address', v('r_tenant_address'));
+  y += 3;
+
+  section('PROPERTY DETAILS');
+  row('Property Address', v('r_prop_address'));
+  row('Property Type', v('r_prop_type'));
+  if (v('r_unit') !== '_______________') row('Floor / Unit', v('r_unit'));
+  y += 3;
+
+  section('RENTAL TERMS');
+  row('Monthly Rent', 'PKR ' + v('r_rent'));
+  row('Security Deposit', 'PKR ' + v('r_deposit'));
+  row('Lease Duration', v('r_duration'));
+  row('Start Date', fmtDate(v('r_start_date')));
+  row('Rent Due Date', v('r_pay_date'));
+  row('Annual Rent Increase', v('r_increase'));
+  y += 3;
+
+  section('TERMS & CONDITIONS');
+  const terms = [
+    '1. The Tenant shall use the property solely for ' + v('r_prop_type') + ' purposes only.',
+    '2. The security deposit of PKR ' + v('r_deposit') + ' shall be refunded upon vacating, provided no damage is caused to the property.',
+    '3. Monthly rent of PKR ' + v('r_rent') + ' shall be paid on the ' + v('r_pay_date') + ' without any delay.',
+    '4. An annual rent increase of ' + v('r_increase') + ' has been mutually agreed upon by both parties.',
+    '5. Either party must provide 30 days written notice prior to the end of the tenancy period.',
+    '6. No structural modifications or alterations shall be made to the property without the Landlord\'s written consent.',
+    '7. The Tenant shall keep the premises clean and in good condition throughout the tenancy period.',
+  ];
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9.5);
+  doc.setTextColor(40, 40, 40);
+  terms.forEach(t => {
+    const lines = doc.splitTextToSize(t, lw);
+    doc.text(lines, lm, y);
+    y += lines.length * 5 + 2;
+  });
+
+  // Signatures
+  y += 6;
+  doc.setDrawColor(180, 180, 200);
+  doc.setLineWidth(0.4);
+  doc.line(lm, y + 14, lm + 65, y + 14);
+  doc.line(rm - 65, y + 14, rm, y + 14);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(9);
+  doc.setTextColor(15, 90, 60);
+  doc.text('Landlord Signature', lm, y + 19);
+  doc.text('Tenant Signature', rm - 65, y + 19);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9);
+  doc.setTextColor(60, 60, 60);
+  doc.text(v('r_landlord_name'), lm, y + 25);
+  doc.text(v('r_tenant_name'), rm - 65, y + 25);
+  doc.text('CNIC: ' + v('r_landlord_cnic'), lm, y + 30);
+  doc.text('CNIC: ' + v('r_tenant_cnic'), rm - 65, y + 30);
+
+  doc.setFontSize(8);
+  doc.setTextColor(150, 150, 150);
+  doc.text('This document was generated electronically and is subject to applicable laws of Pakistan.', 105, 288, { align: 'center' });
+
+  doc.save('Rent_Agreement.pdf');
+}
+</script>
+  <script src="./js/script.js"></script>
+</body>
+</html>
