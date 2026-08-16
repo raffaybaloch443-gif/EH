@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EstateHub - Home</title>
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/index.css">
 </head>
 
 <body>
@@ -19,22 +20,13 @@
       <a href="favorites.html" id="favoriteLink">❤️ Favorites (0)</a>
       <a href="#" id="logoutBtn">Logout</a>
     </nav>
-  </header> 
+  </header>
 
   <main>
     <section class="hero">
       <div class="container">
         <h1>Find Your <span>Dream Property</span></h1>
         <p>Buy, sell and rent properties with confidence through a trusted real estate marketplace.</p>
-        <div class="search-box">
-
-          <input type="text" id="searchInput" placeholder="Search property, city, or type...">
-
-          <button onclick="searchProperty()">
-            🔍 Search
-          </button>
-
-        </div>
       </div>
     </section>
 
@@ -44,45 +36,20 @@
           <h2>Featured Properties</h2>
           <div class="section-actions">
             <a class="muted" href="properties.html">View All</a>
-            <form data-skip-submit>
-              <div class="filter-dropdown">
-                <button class="filter-btn" type="button" aria-expanded="false">
-                  &#128269; Filter &#9662;
-                </button>
-                <div class="filter-menu">
-                  <label>Category</label>
-                  <select>
-                    <option>Select Category</option>
-                    <option>House</option>
-                    <option>Apartment</option>
-                    <option>Villa</option>
-                    <option>Commercial</option>
-                    <option>Plot</option>
-                  </select>
-                  <label>Property Type</label>
-                  <select>
-                    <option>Select Type</option>
-                    <option>Buy</option>
-                    <option>Rent</option>
-                  </select>
-                  <button class="apply-btn" type="button">Apply Filter</button>
-                </div>
-              </div>
-            </form>
           </div>
-
         </div>
+
         <div class="grid-3">
           <article class="property-card" onclick="window.location.href='modern-house.html'" style="cursor:pointer;">
             <div class="property-img">
               <img src="./assets/img/residential 1.png">
               <span class="tag">For Sale</span>
             </div>
-
             <div class="property-body">
               <h3>Residential Properties</h3>
             </div>
           </article>
+
           <article class="property-card" onclick="window.location.href='luxury-apartment.html'" style="cursor:pointer;">
             <div class="property-img">
               <img src="./assets/img/commercal 1.png">
@@ -92,6 +59,7 @@
               <h3>Commercial Properties</h3>
             </div>
           </article>
+
           <article class="property-card" onclick="window.location.href='commercial-plaza.html'" style="cursor:pointer;">
             <div class="property-img">
               <img src="./assets/img/Industrial 1.png">
@@ -121,6 +89,7 @@
               <h3>Plots/Land</h3>
             </div>
           </article>
+
           <article class="property-card" onclick="window.location.href='commercial-plaza.html'" style="cursor:pointer;">
             <div class="property-img">
               <img src="./assets/img/special porperty.png">
@@ -134,6 +103,7 @@
       </div>
     </section>
   </main>
+
   <script src="./js/script.js"></script>
   <script src="./js/favorites-counter.js"></script>
 </body>
