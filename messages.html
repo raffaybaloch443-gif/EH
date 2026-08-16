@@ -10,61 +10,50 @@
 </head>
 
 <body class="messages-page">
-  <header class="topbar"><a class="brand" href="index.html"><span class="brand-icon">&#8962;</span>EstateHub</a>
-    <nav class="nav"><a href="index.html">Home</a><a href="properties.html">Properties</a><a href="about.html">About
-        Us</a><a class="active" href="messages.html">Contact</a></nav>
-    <div class="avatar"></div>
+  <header class="topbar" data-global-header>
+    <a class="brand" href="index.html"><span class="brand-icon">&#8962;</span>EstateHub</a>
+    <nav class="nav" aria-label="Primary navigation"><a href="index.html">Home</a><a href="properties.html">Properties</a><a href="about.html">About Us</a><a class="active" href="messages.html">Contact</a><a href="favorites.html" id="favoriteLink">Favorites (0)</a></nav>
+    <a class="btn dark hide-mobile" href="login.html" id="loginRegisterBtn">Login / Register</a>
   </header>
   <div class="app-layout">
     <aside class="sidebar">
-      <nav class="side-nav"><a href="dashboard.html">&#8962; Dashboard</a><a href="dashboard.html">&#9635; My
-          Properties</a><a href="add-property.html">+ Add Property</a><a href="agreements.html">&#9776; My
-          Agreements</a><a class="active" href="messages.html">&#9993; Messages</a><a href="#">&#9673; Profile</a>
-         <!-- <a href="#">&#9881; Change Password</a><a href="login.html">&#8617; Logout</a> -->
-        </nav>
+      <nav class="side-nav"><a href="dashboard.html">&#8962; Dashboard</a><a href="dashboard.html">&#9635; My Properties</a><a href="add-property.html">+ Add Property</a><a href="agreements.html">&#9776; My Agreements</a><a class="active" href="messages.html">&#9993; Messages</a><a href="#">&#9673; Profile</a></nav>
     </aside>
     <main class="app-main">
       <h1>Messages</h1>
       <p class="breadcrumb">Dashboard / Messages</p>
       <div class="messages">
         <section class="chat-list">
-          <div class="chat-item">
-            <div class="avatar"></div>
-            <div><b>Ali Raza</b>
-              <p class="muted">Hi, I am interested in your Modern House.</p>
-            </div>
-          </div>
-          <div class="chat-item">
-            <div class="avatar"></div>
-            <div><b>Usman Khan</b>
-              <p class="muted">Interested in Luxury Apartment.</p>
-            </div>
-          </div>
+          <div class="chat-item"><div class="avatar"></div><div><b>Ali Raza</b><p class="muted">Hi, I am interested in your Modern House.</p></div></div>
+          <div class="chat-item"><div class="avatar"></div><div><b>Usman Khan</b><p class="muted">Interested in Luxury Apartment.</p></div></div>
         </section>
         <section class="panel chat-window">
+          <div><h3>Ali Raza</h3><p class="muted">Modern House inquiry</p></div>
           <div>
-            <h3>Ali Raza</h3>
-            <p class="muted">Modern House inquiry</p>
+            <div class="bubble-row"><div class="bubble">Hello! Thank you for your interest. Please let me know if you want to visit.</div></div>
+            <div class="bubble-row"><div class="bubble">Yes, I would like to visit. When can we schedule?</div></div>
+            <div class="bubble-row me"><div class="bubble">Tomorrow at 12 PM works for me. Please confirm.</div></div>
           </div>
-          <div>
-            <div class="bubble-row">
-              <div class="bubble">Hello! Thank you for your interest. Please let me know if you want to visit.</div>
-            </div>
-            <div class="bubble-row">
-              <div class="bubble">Yes, I would like to visit. When can we schedule?</div>
-            </div>
-            <div class="bubble-row me">
-              <div class="bubble">Tomorrow at 12 PM works for me. Please confirm.</div>
-            </div>
-          </div>
-          <form id="chatForm" class="chat-input">
-            <input id="userMessage" type="text" placeholder="Type a message..." autocomplete="off" required>
-            <button class="btn" type="submit">&#10148;</button>
-          </form>
+          <form id="chatForm" class="chat-input"><input id="userMessage" type="text" placeholder="Type a message..." autocomplete="off" required><button class="btn" type="submit">&#10148;</button></form>
         </section>
       </div>
     </main>
   </div>
+
+  <footer class="site-footer" data-site-footer>
+    <div class="site-footer__inner">
+      <div class="site-footer__grid">
+        <div class="site-footer__brand"><a class="site-footer__logo" href="index.html" aria-label="EstateHub home"><span class="site-footer__logo-mark" aria-hidden="true">&#8962;</span><span>EstateHub</span></a><p>Connecting you to your perfect space. Leading properties, trusted agents, and seamless transactions.</p></div>
+        <nav class="site-footer__column" aria-label="Quick links"><h2>Quick Links</h2><a href="properties.html">For Sale</a><a href="properties.html?purpose=rent">For Rent</a><a href="properties.html">New Projects</a></nav>
+        <nav class="site-footer__column" aria-label="Company"><h2>Company</h2><a href="about.html">About Us</a><a href="about.html#agents">Our Agents</a><a href="messages.html">Contact</a></nav>
+        <div class="site-footer__column"><h2>Contact Us</h2><div class="site-footer__contact"><span aria-hidden="true">⌖</span><span>Block 4, Karachi, Pakistan</span></div><div class="site-footer__contact"><span aria-hidden="true">@</span><a href="mailto:info@estatehub.org">info@estatehub.org</a></div><div class="site-footer__contact"><span aria-hidden="true">☎</span><a href="tel:+9221111123456">+92 (21) 111-123-456</a></div></div>
+        <div class="site-footer__column site-footer__newsletter"><h2>Stay Updated</h2><p class="site-footer__newsletter-title">Subscribe to our Newsletter</p><form class="site-footer__form" data-validate="newsletter"><input type="email" name="email" placeholder="Enter your email address..." aria-label="Email address" required><button type="submit" class="site-footer__button">Subscribe</button></form></div>
+      </div>
+      <div class="site-footer__bottom">© 2026 EstateHub. All rights reserved.</div>
+    </div>
+  </footer>
+  <button class="floating-contact" type="button" aria-label="Open EstateHub information">Info</button>
+
   <script src="./js/ai-chat.js"></script>
   <script src="./js/script.js"></script>
 </body>
