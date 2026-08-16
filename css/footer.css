@@ -1,0 +1,85 @@
+/* Shared footer layout. This file intentionally controls only footer geometry. */
+.site-footer {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.site-footer__inner {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.site-footer__grid {
+  width: 100%;
+  display: grid !important;
+  grid-template-columns: minmax(260px, 1.5fr) minmax(130px, .8fr) minmax(130px, .8fr) minmax(180px, 1fr) minmax(200px, 1.1fr) !important;
+  gap: 36px;
+  align-items: start;
+  box-sizing: border-box;
+}
+
+.site-footer__brand,
+.site-footer__column {
+  min-width: 0;
+  width: auto;
+  box-sizing: border-box;
+}
+
+.site-footer__column h2,
+.site-footer__newsletter-title,
+.site-footer__column a,
+.site-footer__contact,
+.site-footer__column p {
+  overflow-wrap: anywhere;
+}
+
+.site-footer__form {
+  width: 100%;
+}
+
+.site-footer__form input {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.site-footer__button {
+  max-width: 100%;
+}
+
+@media (max-width: 1050px) {
+  .site-footer__grid {
+    grid-template-columns: minmax(240px, 1.4fr) repeat(2, minmax(150px, 1fr)) minmax(180px, 1fr) !important;
+  }
+
+  .site-footer__brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 700px) {
+  .site-footer__inner {
+    width: min(100% - 24px, 1180px);
+  }
+
+  .site-footer__grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px;
+  }
+
+  .site-footer__brand {
+    grid-column: auto;
+  }
+
+  .site-footer__column,
+  .site-footer__brand {
+    width: 100%;
+  }
+
+  .site-footer__form input,
+  .site-footer__button {
+    width: 100%;
+  }
+}
