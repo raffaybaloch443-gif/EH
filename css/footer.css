@@ -1,0 +1,83 @@
+/* =========================================================
+   FOOTER - RESPONSIVE ONLY
+   Keeps the existing desktop footer unchanged.
+========================================================= */
+
+@media (max-width: 900px) {
+  .site-footer .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 24px;
+  }
+
+  .site-footer .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .site-footer .footer-bottom {
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .site-footer {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .site-footer .footer-grid {
+    width: min(100% - 28px, 1180px);
+    margin: 0 auto;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    padding: 32px 0 24px !important;
+  }
+
+  .site-footer .footer-brand,
+  .site-footer .footer-column,
+  .site-footer .footer-contact,
+  .site-footer .footer-newsletter {
+    grid-column: auto !important;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .site-footer h3,
+  .site-footer h4,
+  .site-footer p {
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .site-footer .footer-newsletter input,
+  .site-footer .footer-newsletter button,
+  .site-footer .newsletter input,
+  .site-footer .newsletter button {
+    width: 100%;
+    max-width: none;
+  }
+
+  .site-footer .footer-contact a,
+  .site-footer .footer-contact span {
+    overflow-wrap: anywhere;
+  }
+
+  .site-footer .footer-bottom {
+    width: min(100% - 28px, 1180px);
+    margin: 0 auto;
+    padding: 16px 0 20px;
+    text-align: center;
+  }
+}
+
+/* Fallback for the same footer when older markup does not use the
+   optional column class names. */
+@media (max-width: 600px) {
+  .site-footer .footer-grid > * {
+    min-width: 0;
+  }
+
+  .site-footer .footer-grid > div {
+    width: 100%;
+  }
+}
