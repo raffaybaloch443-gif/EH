@@ -3,17 +3,8 @@
    Responsive rules only. Existing desktop UI is preserved.
 ========================================================= */
 
-.messages-page .app-layout {
-  width: 100%;
-  min-width: 0;
-}
-
-.messages-page .app-main {
-  min-width: 0;
-  width: 100%;
-  overflow-x: hidden;
-}
-
+.messages-page .app-layout,
+.messages-page .app-main,
 .messages-page .messages,
 .messages-page .chat-list,
 .messages-page .chat-window {
@@ -21,14 +12,20 @@
   min-width: 0;
 }
 
+.messages-page .app-main {
+  overflow-x: hidden;
+}
+
 .messages-page .chat-item,
-.messages-page .chat-item > div:last-child {
+.messages-page .chat-item > div:last-child,
+.messages-page .chat-window > div {
   min-width: 0;
 }
 
 .messages-page .chat-item .muted,
 .messages-page .bubble {
   overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .messages-page .chat-window {
@@ -46,6 +43,9 @@
 .messages-page .chat-input {
   width: 100%;
   min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 48px;
+  gap: 10px;
 }
 
 .messages-page .chat-input input {
@@ -53,7 +53,7 @@
   width: 100%;
 }
 
-/* Tablet */
+/* Tablet / small laptop */
 @media (max-width: 900px) {
   .messages-page .app-layout {
     grid-template-columns: 1fr;
@@ -64,6 +64,7 @@
     min-width: 0;
     border-right: 0;
     border-bottom: 1px solid var(--line);
+    padding: 12px;
     overflow: hidden;
   }
 
@@ -71,7 +72,10 @@
     width: 100%;
     display: flex;
     flex-wrap: nowrap;
+    gap: 8px;
     overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 2px;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
   }
@@ -89,7 +93,6 @@
     width: 100%;
     max-width: 100%;
     padding: 24px 18px;
-    overflow-x: hidden;
   }
 
   .messages-page .messages {
@@ -100,6 +103,7 @@
   .messages-page .chat-list,
   .messages-page .chat-window {
     width: 100%;
+    max-width: 100%;
   }
 
   .messages-page .chat-window {
@@ -108,6 +112,17 @@
 
   .messages-page .bubble {
     max-width: 88%;
+  }
+
+  /* Footer: force a readable layout on this page at tablet widths. */
+  .messages-page .site-footer__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 24px;
+  }
+
+  .messages-page .site-footer__brand,
+  .messages-page .site-footer__newsletter {
+    grid-column: 1 / -1 !important;
   }
 }
 
@@ -164,23 +179,20 @@
   }
 
   .messages-page .bubble {
-    max-width: 90%;
+    max-width: 92%;
     padding: 9px 11px;
     font-size: 12px;
     line-height: 1.4;
   }
 
   .messages-page .chat-input {
-    display: grid;
     grid-template-columns: minmax(0, 1fr) 42px;
     gap: 8px;
-    width: 100%;
   }
 
   .messages-page .chat-input input {
-    width: 100%;
-    min-width: 0;
     height: 42px;
+    min-width: 0;
     font-size: 12px;
   }
 
@@ -191,33 +203,49 @@
     padding: 0;
   }
 
-  /* Footer is stacked on mobile so columns never become narrow. */
+  /* Footer: one column on phones. No narrow/cramped footer columns. */
   .messages-page .site-footer__grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
+    grid-template-columns: 1fr !important;
+    gap: 22px;
     padding: 24px 0 20px;
   }
 
-  .messages-page .site-footer__column,
   .messages-page .site-footer__brand,
-  .messages-page .site-footer__newsletter {
-    min-width: 0;
+  .messages-page .site-footer__newsletter,
+  .messages-page .site-footer__column {
+    grid-column: auto !important;
     width: 100%;
+    min-width: 0;
+  }
+
+  .messages-page .site-footer__column h2 {
+    margin-bottom: 10px;
+  }
+
+  .messages-page .site-footer__contact {
+    align-items: flex-start;
   }
 
   .messages-page .site-footer__contact span,
   .messages-page .site-footer__contact a {
     overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   .messages-page .site-footer__form {
     width: 100%;
+    grid-template-columns: 1fr !important;
   }
 
   .messages-page .site-footer__form input,
   .messages-page .site-footer__button {
     width: 100%;
     min-width: 0;
+  }
+
+  .messages-page .site-footer__bottom {
+    text-align: center;
+    padding-inline: 12px;
   }
 }
 
