@@ -1,0 +1,10 @@
+/* About page responsive layer */
+@media (max-width: 900px) {
+  body:has(.about-page) .about-hero { grid-template-columns: 1fr; }
+  body:has(.about-page) .about-grid, body:has(.about-page) .people-grid { grid-template-columns: 1fr; }
+  body:has(.about-page) .security-band, body:has(.about-page) .location-card { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  body:has(.about-page) .about-container { width: min(100% - 24px, 1180px); }
+  body:has(.about-page) .hero-badge { position: static; width: auto; margin: 180px 12px 12px; }
+}

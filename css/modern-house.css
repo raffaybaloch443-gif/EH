@@ -1,0 +1,2 @@
+/* Modern house page responsive layer */
+@media (max-width: 900px) { body:has(.detail-layout) .detail-layout { grid-template-columns: 1fr; } }

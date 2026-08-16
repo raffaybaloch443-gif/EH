@@ -1,0 +1,2 @@
+/* Compare page responsive layer */
+@media (max-width: 700px) { body:has(table) table { display: block; overflow-x: auto; white-space: nowrap; } }

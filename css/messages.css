@@ -1,0 +1,3 @@
+/* Messages page responsive layer */
+@media (max-width: 900px) { body:has(.messages) .messages { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { body:has(.messages) .chat-window { min-height: 420px; } body:has(.messages) .bubble { max-width: 92%; } }

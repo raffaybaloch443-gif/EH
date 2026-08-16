@@ -1,0 +1,6 @@
+/* My-bookings page responsive layer */
+@media (max-width: 768px) {
+  body:has(#bookingsContainer) #bookingsContainer { padding: 14px; }
+  body:has(#bookingsContainer) .booking-card { padding: 15px; }
+  body:has(#bookingsContainer) .deleteBookingBtn { width: 100%; }
+}

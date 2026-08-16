@@ -1,0 +1,2 @@
+/* CNIC verification page responsive layer */
+@media (max-width: 700px) { body:has(.form-card) .form-grid { grid-template-columns: 1fr; } }

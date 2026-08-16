@@ -1,0 +1,9 @@
+/* Property information/detail page responsive layer */
+@media (max-width: 900px) {
+  body:has(.detail-layout) .detail-layout { grid-template-columns: 1fr; }
+  body:has(.detail-layout) .gallery-main { height: clamp(280px, 58vw, 470px); }
+}
+@media (max-width: 600px) {
+  body:has(.detail-layout) .gallery-main { height: 250px; }
+  body:has(.detail-layout) .feature-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

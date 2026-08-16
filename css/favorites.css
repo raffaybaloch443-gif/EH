@@ -1,0 +1,2 @@
+/* Favorites page responsive layer */
+@media (max-width: 700px) { body:has(.property-card) .grid-3 { grid-template-columns: 1fr; } }

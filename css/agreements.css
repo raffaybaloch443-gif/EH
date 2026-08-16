@@ -1,0 +1,2 @@
+/* Agreements page responsive layer */
+@media (max-width: 700px) { body:has(table) main { overflow-x: auto; } }

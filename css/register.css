@@ -1,0 +1,2 @@
+/* Register page responsive layer */
+@media (max-width: 600px) { body:has(.auth-card) .auth-wrap { padding: 24px 12px; } body:has(.auth-card) .form-grid { grid-template-columns: 1fr; } }

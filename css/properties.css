@@ -1,0 +1,6 @@
+/* Properties listing page responsive layer */
+@media (max-width: 900px) {
+  body:has(.listing-layout) .listing-layout { grid-template-columns: 1fr; }
+  body:has(.listing-layout) .list-card { grid-template-columns: 1fr; }
+  body:has(.listing-layout) .list-card .btn { width: 100%; }
+}

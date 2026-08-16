@@ -1,0 +1,5 @@
+/* Document generator pages responsive layer */
+@media (max-width: 800px) {
+  body:has(.form-card) .form-grid { grid-template-columns: 1fr; }
+  body:has(.form-card) .form-card { width: 100%; }
+}
