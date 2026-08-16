@@ -1,3 +1,244 @@
-/* Messages page responsive layer */
-@media (max-width: 900px) { body:has(.messages) .messages { grid-template-columns: 1fr; } }
-@media (max-width: 600px) { body:has(.messages) .chat-window { min-height: 420px; } body:has(.messages) .bubble { max-width: 92%; } }
+/* =========================================================
+   MESSAGES PAGE
+   Responsive rules only. Existing desktop UI is preserved.
+========================================================= */
+
+.messages-page .app-layout {
+  width: 100%;
+  min-width: 0;
+}
+
+.messages-page .app-main {
+  min-width: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.messages-page .messages,
+.messages-page .chat-list,
+.messages-page .chat-window {
+  width: 100%;
+  min-width: 0;
+}
+
+.messages-page .chat-item,
+.messages-page .chat-item > div:last-child {
+  min-width: 0;
+}
+
+.messages-page .chat-item .muted,
+.messages-page .bubble {
+  overflow-wrap: anywhere;
+}
+
+.messages-page .chat-window {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.messages-page .chat-window > div:nth-child(2) {
+  flex: 1;
+  min-height: 0;
+}
+
+.messages-page .chat-input {
+  width: 100%;
+  min-width: 0;
+}
+
+.messages-page .chat-input input {
+  min-width: 0;
+  width: 100%;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .messages-page .app-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .messages-page .sidebar {
+    width: 100%;
+    min-width: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+
+  .messages-page .side-nav {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .messages-page .side-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .messages-page .side-nav a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .messages-page .app-main {
+    width: 100%;
+    max-width: 100%;
+    padding: 24px 18px;
+    overflow-x: hidden;
+  }
+
+  .messages-page .messages {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .messages-page .chat-list,
+  .messages-page .chat-window {
+    width: 100%;
+  }
+
+  .messages-page .chat-window {
+    min-height: 420px;
+  }
+
+  .messages-page .bubble {
+    max-width: 88%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .messages-page .app-main {
+    padding: 18px 12px;
+  }
+
+  .messages-page .app-main h1 {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .messages-page .breadcrumb {
+    font-size: 12px;
+  }
+
+  .messages-page .chat-item {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .messages-page .chat-item .avatar {
+    width: 34px;
+    height: 34px;
+  }
+
+  .messages-page .chat-item b {
+    font-size: 13px;
+  }
+
+  .messages-page .chat-item .muted {
+    margin-top: 4px;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .messages-page .chat-window {
+    min-height: 390px;
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .messages-page .chat-window h3 {
+    font-size: 16px;
+  }
+
+  .messages-page .chat-window .muted {
+    font-size: 11px;
+  }
+
+  .messages-page .bubble {
+    max-width: 90%;
+    padding: 9px 11px;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .messages-page .chat-input {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 42px;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .messages-page .chat-input input {
+    width: 100%;
+    min-width: 0;
+    height: 42px;
+    font-size: 12px;
+  }
+
+  .messages-page .chat-input .btn {
+    width: 42px;
+    min-width: 42px;
+    height: 42px;
+    padding: 0;
+  }
+
+  /* Footer is stacked on mobile so columns never become narrow. */
+  .messages-page .site-footer__grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 24px 0 20px;
+  }
+
+  .messages-page .site-footer__column,
+  .messages-page .site-footer__brand,
+  .messages-page .site-footer__newsletter {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .messages-page .site-footer__contact span,
+  .messages-page .site-footer__contact a {
+    overflow-wrap: anywhere;
+  }
+
+  .messages-page .site-footer__form {
+    width: 100%;
+  }
+
+  .messages-page .site-footer__form input,
+  .messages-page .site-footer__button {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  .messages-page .app-main {
+    padding-inline: 10px;
+  }
+
+  .messages-page .side-nav a {
+    font-size: 10px;
+    padding-inline: 8px;
+  }
+
+  .messages-page .chat-window {
+    min-height: 360px;
+    padding: 11px;
+  }
+
+  .messages-page .bubble {
+    max-width: 94%;
+    font-size: 11px;
+  }
+}
