@@ -1,0 +1,17 @@
+/* Footer layout fix for pages that inject the footer inside .app-layout. */
+.app-layout > .site-footer {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-width: 0;
+}
+
+.app-layout > .site-footer .site-footer__inner {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+@media (max-width: 620px) {
+  .app-layout > .site-footer .site-footer__inner {
+    width: min(100% - 24px, 1180px);
+  }
+}
