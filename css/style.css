@@ -1,6 +1,7 @@
 /* Compatibility entry point. Shared CSS lives in layout.css; page-specific layers follow. */
 @import url('./layout.css');
 @import url('./responsive.css');
+@import url('./footer.css');
 @import url('./index.css');
 @import url('./properties.css');
 @import url('./modern-house.css');
