@@ -2,27 +2,18 @@
 <html lang="en">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EstateHub - Seller Dashboard</title><link rel="stylesheet" href="./css/style.css"></head>
 <body>
-  <header class="topbar"><a class="brand" href="index.html"><span class="brand-icon">&#8962;</span>EstateHub</a><nav class="nav"><a href="index.html">Home</a><a href="properties.html">Properties</a><a href="about.html">About Us</a><a href="messages.html">Contact</a></nav><div class="avatar"></div></header>
+  <header class="topbar" data-global-header><a class="brand" href="index.html"><span class="brand-icon">&#8962;</span>EstateHub</a><nav class="nav"><a href="index.html">Home</a><a href="properties.html">Properties</a><a href="about.html">About Us</a><a href="messages.html">Contact</a><a href="favorites.html" id="favoriteLink">Favorites (0)</a></nav><a class="btn dark hide-mobile" href="login.html" id="loginRegisterBtn">Login / Register</a></header>
   <div class="app-layout">
-    <aside class="sidebar"><nav class="side-nav"><a class="active" href="dashboard.html">&#8962; Dashboard</a>
-      <a href="dashboard.html">&#9635; My Properties</a><a href="add-property.html">+ Add Property</a>
-      <a href="agreements.html">&#9776; My Agreements</a><a href="messages.html">&#9993; Messages</a>
-      <a href="#">&#9673; Profile</a>
-      <!-- <a href="#">&#9881; Change Password</a>
-      <a href="#" id="logoutBtn">&#8617; Logout</a> -->
-    </nav></aside>
+    <aside class="sidebar"><nav class="side-nav"><a class="active" href="dashboard.html">&#8962; Dashboard</a><a href="dashboard.html">&#9635; My Properties</a><a href="add-property.html">+ Add Property</a><a href="agreements.html">&#9776; My Agreements</a><a href="messages.html">&#9993; Messages</a><a href="#">&#9673; Profile</a></nav></aside>
     <main class="app-main">
       <h1>Dashboard</h1>
       <div class="stats"><div class="stat"><strong>5</strong><span>My Properties</span></div><div class="stat"><strong>3</strong><span>Active Properties</span></div><div class="stat"><strong>12</strong><span>Total Inquiries</span></div><div class="stat"><strong>2</strong><span>Agreements</span></div></div>
-      <section class="panel"><div class="section-head"><h2>My Properties</h2><a class="btn small light" href="properties.html">View All</a></div>
-        <div class="mini-property"><img src="assets/img/photo-1600607687920-4e2a09cf159d-w300-q70.jpg" alt=""><div><b>Modern House</b><p class="muted">Lahore</p></div><span class="status">Active</span></div>
-        <div class="mini-property"><img src="assets/img/photo-1545324418-cc1a3fa10c00-w300-q70.jpg" alt=""><div><b>Luxury Apartment</b><p class="muted">Karachi</p></div><span class="status">Active</span></div>
-        <div class="mini-property"><img src="assets/img/photo-1486406146926-c627a92ad1ab-w300-q70.jpg" alt=""><div><b>Commercial Plaza</b><p class="muted">Islamabad</p></div><span class="status pending">Pending</span></div>
-      </section>
-      <br>
-      <section class="panel"><h2>Recent Inquiries</h2><p>Ali Raza <span class="muted">interested in Modern House - 2 hours ago</span></p><p>Usman Khan <span class="muted">interested in Luxury Apartment - 1 day ago</span></p><p>Ahmed Malik <span class="muted">interested in Commercial Plaza - 2 days ago</span></p></section>
+      <section class="panel"><div class="section-head"><h2>My Properties</h2><a class="btn small light" href="properties.html">View All</a></div><div class="mini-property"><img src="assets/img/photo-1600607687920-4e2a09cf159d-w300-q70.jpg" alt=""><div><b>Modern House</b><p class="muted">Lahore</p></div><span class="status">Active</span></div><div class="mini-property"><img src="assets/img/photo-1545324418-cc1a3fa10c00-w300-q70.jpg" alt=""><div><b>Luxury Apartment</b><p class="muted">Karachi</p></div><span class="status">Active</span></div><div class="mini-property"><img src="assets/img/photo-1486406146926-c627a92ad1ab-w300-q70.jpg" alt=""><div><b>Commercial Plaza</b><p class="muted">Islamabad</p></div><span class="status pending">Pending</span></div></section>
+      <br><section class="panel"><h2>Recent Inquiries</h2><p>Ali Raza <span class="muted">interested in Modern House - 2 hours ago</span></p><p>Usman Khan <span class="muted">interested in Luxury Apartment - 1 day ago</span></p><p>Ahmed Malik <span class="muted">interested in Commercial Plaza - 2 days ago</span></p></section>
     </main>
   </div>
+  <footer class="site-footer" data-site-footer><div class="site-footer__inner"><div class="site-footer__grid"><div class="site-footer__brand"><a class="site-footer__logo" href="index.html" aria-label="EstateHub home"><span class="site-footer__logo-mark" aria-hidden="true">&#8962;</span><span>EstateHub</span></a><p>Connecting you to your perfect space. Leading properties, trusted agents, and seamless transactions.</p></div><nav class="site-footer__column" aria-label="Quick links"><h2>Quick Links</h2><a href="properties.html">For Sale</a><a href="properties.html?purpose=rent">For Rent</a><a href="properties.html">New Projects</a></nav><nav class="site-footer__column" aria-label="Company"><h2>Company</h2><a href="about.html">About Us</a><a href="about.html#agents">Our Agents</a><a href="messages.html">Contact</a></nav><div class="site-footer__column"><h2>Contact Us</h2><div class="site-footer__contact"><span>⌖</span><span>Block 4, Karachi, Pakistan</span></div><div class="site-footer__contact"><span>@</span><a href="mailto:info@estatehub.org">info@estatehub.org</a></div><div class="site-footer__contact"><span>☎</span><a href="tel:+9221111123456">+92 (21) 111-123-456</a></div></div><div class="site-footer__column site-footer__newsletter"><h2>Stay Updated</h2><p class="site-footer__newsletter-title">Subscribe to our Newsletter</p><form class="site-footer__form" data-validate="newsletter"><input type="email" name="email" placeholder="Enter your email address..." aria-label="Email address" required><button type="submit" class="site-footer__button">Subscribe</button></form></div></div><div class="site-footer__bottom">© 2026 EstateHub. All rights reserved.</div></div></footer>
+  <button class="floating-contact" type="button" aria-label="Open EstateHub information">Info</button>
   <script src="./js/script.js"></script>
 </body>
 </html>
