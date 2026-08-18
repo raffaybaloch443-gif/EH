@@ -36,7 +36,7 @@
       area: "1800 Sq Ft",
       bedrooms: 3,
       bathrooms: 4,
-      image: "assets/img/photo-1545324418-cc1a3fa10c00-w900-q80.jpg",
+      image: "assets/img/photo-1545324418-cc1a3fa10c00-w900-q70.jpg",
       url: "property-info.html?id=11"
     },
     {
@@ -85,6 +85,34 @@
 
   function writeStore(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  function getLoggedInUser() {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE.user) || "null");
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function getUserAvatar(user) {
+    if (!user) return "";
+    return user.avatar || user.avatarUrl || user.profileImage || user.profilePicture || user.photo || user.image || user.dp || user.profilePic || "";
+  }
+
+  function getUserInitials(user) {
+    const name = String((user && (user.name || user.fullName)) || "U").trim();
+    const parts = name.split(/\s+/).filter(Boolean);
+    return (parts.length > 1 ? parts[0][0] + parts[parts.length - 1][0] : name.slice(0, 2)).toUpperCase();
+  }
+
+  function ensureNavbarStyles() {
+    if (document.getElementById("estatehub-navbar-styles")) return;
+    const link = document.createElement("link");
+    link.id = "estatehub-navbar-styles";
+    link.rel = "stylesheet";
+    link.href = "./css/navbar.css?v=1";
+    document.head.appendChild(link);
   }
 
   function normalizeProperty(property) {
@@ -137,8 +165,15 @@
   }
 
   function headerMarkup(active) {
-    const user = JSON.parse(localStorage.getItem(STORAGE.user) || "null");
+    const user = getLoggedInUser();
     const count = readStore(STORAGE.favorites).length;
+    const avatar = getUserAvatar(user);
+    const profileHref = user ? "dashboard.html" : "login.html";
+    const profileLabel = user ? `${user.name || "Profile"} profile` : "Login / Register";
+    const profileMarkup = avatar
+      ? `<img src="${String(avatar).replace(/"/g, "&quot;")}" alt="${profileLabel.replace(/"/g, "&quot;")}" loading="lazy">`
+      : `<span class="nav-profile-fallback" aria-hidden="true">${getUserInitials(user)}</span>`;
+
     return `
       <header class="topbar" data-global-header>
         <a class="brand" href="index.html"><span class="brand-icon" aria-hidden="true">&#8962;</span>EstateHub</a>
@@ -149,7 +184,7 @@
           <a ${active === "messages.html" ? 'class="active"' : ""} href="messages.html">Contact</a>
           <a href="favorites.html" id="favoriteLink" aria-label="Favorite properties">Favorites (${count})</a>
         </nav>
-        ${user ? `<a href="#" id="logoutBtn">Logout</a>` : `<a class="btn dark hide-mobile" href="login.html">Login / Register</a>`}
+        <a class="nav-profile" href="${profileHref}" aria-label="${profileLabel.replace(/"/g, "&quot;")}">${profileMarkup}</a>
       </header>
     `;
   }
@@ -197,6 +232,7 @@
   `;
 
   function normalizeHeader() {
+    ensureNavbarStyles();
     const active = ["modern-house.html", "luxury-apartment.html", "commercial-plaza.html", "property-info.html", "property-detail.html"].includes(pageName())
       ? "properties.html"
       : pageName();
@@ -288,19 +324,19 @@
     });
   }
 
-function enableContactModal() {
-  if (document.querySelector(".floating-contact")) return;
+  function enableContactModal() {
+    if (document.querySelector(".floating-contact")) return;
 
-  document.body.insertAdjacentHTML("beforeend", `
-    <button class="floating-contact" type="button">Info</button>
-  `);
+    document.body.insertAdjacentHTML("beforeend", `
+      <button class="floating-contact" type="button">Info</button>
+    `);
 
-  const openBtn = document.querySelector(".floating-contact");
+    const openBtn = document.querySelector(".floating-contact");
 
-  openBtn.addEventListener("click", () => {
-    window.location.href = "messages.html";
-  });
-}
+    openBtn.addEventListener("click", () => {
+      window.location.href = "messages.html";
+    });
+  }
 
   function enableGallery() {
     const main = document.querySelector("[data-gallery-main]");
@@ -476,16 +512,6 @@ function enableContactModal() {
         toggleCompare(property);
       }
     });
-
-    const logout = document.getElementById("logoutBtn");
-    if (logout) {
-      logout.addEventListener("click", (event) => {
-        event.preventDefault();
-        localStorage.removeItem(STORAGE.user);
-        toast("You have been logged out.", "info");
-        window.setTimeout(() => (window.location.href = "login.html"), 400);
-      });
-    }
   }
 
   function enableLoader() {
