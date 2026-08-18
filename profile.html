@@ -17,9 +17,7 @@
       <a href="messages.html">Contact</a>
       <a href="favorites.html" id="favoriteLink">Favorites (0)</a>
     </nav>
-    <a class="nav-profile" href="profile.html" aria-label="Profile">
-      <span class="nav-profile-fallback">U</span>
-    </a>
+    <a class="nav-profile" href="profile.html" aria-label="Profile"><span class="nav-profile-fallback">U</span></a>
   </header>
 
   <div class="app-layout">
@@ -49,26 +47,11 @@
         </div>
 
         <div class="profile-fields">
-          <div class="profile-field">
-            <label>Name</label>
-            <div id="nameValue" class="profile-field-value">—</div>
-          </div>
-          <div class="profile-field">
-            <label>Email</label>
-            <div id="emailValue" class="profile-field-value">—</div>
-          </div>
-          <div class="profile-field">
-            <label>Phone</label>
-            <div id="phoneValue" class="profile-field-value">—</div>
-          </div>
-          <div class="profile-field">
-            <label>Location</label>
-            <div id="locationValue" class="profile-field-value">—</div>
-          </div>
-          <div class="profile-field">
-            <label>Account Type</label>
-            <div id="roleValue" class="profile-field-value">—</div>
-          </div>
+          <div class="profile-field"><label>Name</label><div id="nameValue" class="profile-field-value">—</div></div>
+          <div class="profile-field"><label>Email</label><div id="emailValue" class="profile-field-value">—</div></div>
+          <div class="profile-field"><label>Phone</label><div id="phoneValue" class="profile-field-value">—</div></div>
+          <div class="profile-field"><label>Location</label><div id="locationValue" class="profile-field-value">—</div></div>
+          <div class="profile-field"><label>Account Type</label><div id="roleValue" class="profile-field-value">—</div></div>
         </div>
       </section>
     </main>
@@ -77,6 +60,8 @@
   <script src="./js/script.js"></script>
   <script>
     (function () {
+      const avatarLink = document.querySelector('.nav-profile');
+      if (avatarLink) avatarLink.setAttribute('href', 'profile.html');
       try {
         const raw = localStorage.getItem('loggedInUser') || localStorage.getItem('estatehubUser') || localStorage.getItem('user');
         const user = raw ? JSON.parse(raw) : {};
@@ -86,7 +71,6 @@
         const location = user.location || user.city || '—';
         const role = user.role || user.accountType || 'USER';
         const avatar = user.avatar || user.avatarUrl || user.profileImage || user.profilePicture || user.photo || user.image || user.dp || user.profilePic || '';
-
         document.getElementById('profileName').textContent = name;
         document.getElementById('profileEmail').textContent = email || 'Your account information';
         document.getElementById('nameValue').textContent = name;
