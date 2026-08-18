@@ -1,6 +1,5 @@
 /* EstateHub global navbar */
 
-/* Desktop: preserve the existing navbar appearance. */
 .topbar {
   position: relative;
 }
@@ -44,19 +43,32 @@
   line-height: 1;
 }
 
-/* Logged-out profile control remains usable; once logged in the same control
-   becomes the user's avatar/profile link. There is never a Logout button. */
+/* Before login: keep Login / Register available. After login: this same
+   control becomes the user's circular avatar. Logout is never rendered. */
+.topbar .nav-profile[aria-label="Login / Register"] {
+  width: auto;
+  min-width: 116px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: #eef2f7;
+  box-shadow: none;
+}
+
 .topbar .nav-profile[aria-label="Login / Register"] .nav-profile-fallback {
+  width: auto;
+  height: auto;
+  border-radius: 0;
   font-size: 0;
 }
 
 .topbar .nav-profile[aria-label="Login / Register"] .nav-profile-fallback::before {
-  content: "↪";
-  font-size: 18px;
+  content: "Login / Register";
+  font-size: 13px;
   font-weight: 700;
+  white-space: nowrap;
 }
 
-/* Keep the primary links from being crushed when the viewport gets narrower. */
 @media (max-width: 900px) {
   .topbar {
     flex-wrap: wrap;
@@ -116,6 +128,16 @@
     height: 38px;
     min-width: 38px;
     margin-left: auto;
+    padding: 0;
+    border-radius: 50%;
+  }
+
+  .topbar .nav-profile[aria-label="Login / Register"] {
+    width: auto;
+    min-width: 108px;
+    height: 36px;
+    padding: 0 12px;
+    border-radius: 999px;
   }
 }
 
@@ -130,5 +152,15 @@
     width: 36px;
     height: 36px;
     min-width: 36px;
+  }
+
+  .topbar .nav-profile[aria-label="Login / Register"] {
+    min-width: 102px;
+    height: 34px;
+    padding: 0 10px;
+  }
+
+  .topbar .nav-profile[aria-label="Login / Register"] .nav-profile-fallback::before {
+    font-size: 12px;
   }
 }
