@@ -1,10 +1,8 @@
 /* EstateHub global navbar */
-
-.topbar {
-  position: relative;
-}
+.topbar { position: relative; }
 
 .topbar .nav-profile {
+  position: relative;
   width: 42px;
   height: 42px;
   min-width: 42px;
@@ -12,7 +10,7 @@
   margin-left: 14px;
   border: 0;
   border-radius: 50%;
-  overflow: hidden;
+  overflow: visible;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -21,16 +19,10 @@
   color: #0b1f3a;
   text-decoration: none;
   box-shadow: 0 2px 8px rgba(0,0,0,.10);
+  z-index: 1100;
 }
 
-.topbar .nav-profile img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
+.topbar .nav-profile img,
 .topbar .nav-profile-fallback {
   width: 100%;
   height: 100%;
@@ -38,13 +30,11 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1;
 }
+.topbar .nav-profile img { display: block; object-fit: cover; }
+.topbar .nav-profile-fallback { font-size: 15px; font-weight: 700; line-height: 1; }
 
-/* Before login: keep Login / Register available. After login: this same
-   control becomes the user's circular avatar. Logout is never rendered. */
+/* The profile control is always the user's avatar after login. */
 .topbar .nav-profile[aria-label="Login / Register"] {
   width: auto;
   min-width: 116px;
@@ -54,14 +44,12 @@
   background: #eef2f7;
   box-shadow: none;
 }
-
 .topbar .nav-profile[aria-label="Login / Register"] .nav-profile-fallback {
   width: auto;
   height: auto;
   border-radius: 0;
   font-size: 0;
 }
-
 .topbar .nav-profile[aria-label="Login / Register"] .nav-profile-fallback::before {
   content: "Login / Register";
   font-size: 13px;
@@ -69,98 +57,97 @@
   white-space: nowrap;
 }
 
+/* ChatGPT-style profile popover: opens from the avatar and drops downward. */
+.profile-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 286px;
+  padding: 10px 0;
+  background: #303030;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 18px;
+  box-shadow: 0 14px 35px rgba(0,0,0,.24);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transform-origin: top right;
+  transition: opacity .16s ease, transform .16s ease, visibility .16s ease;
+  z-index: 1200;
+}
+.profile-menu.is-open { opacity: 1; visibility: visible; transform: translateY(0); }
+.profile-menu__account {
+  min-height: 58px;
+  padding: 6px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.profile-menu__avatar {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #87929a;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+}
+.profile-menu__avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.profile-menu__account-text { min-width: 0; display: flex; flex-direction: column; line-height: 1.15; }
+.profile-menu__account-text strong { font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.profile-menu__account-text small { margin-top: 3px; color: #b8b8b8; font-size: 12px; }
+.profile-menu__chevron { margin-left: auto; font-size: 24px; line-height: 1; color: #ddd; }
+.profile-menu__divider { height: 1px; margin: 6px 14px; background: rgba(255,255,255,.14); }
+.profile-menu__item {
+  width: calc(100% - 16px);
+  min-height: 38px;
+  margin: 2px 8px;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: #f5f5f5;
+  text-decoration: none;
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+.profile-menu__item:hover { background: rgba(255,255,255,.08); }
+.profile-menu__item b { margin-left: auto; font-size: 20px; font-weight: 400; color: #ccc; }
+.profile-menu__logout { color: #fff; }
+
 @media (max-width: 900px) {
-  .topbar {
-    flex-wrap: wrap;
-    row-gap: 8px;
-  }
-
-  .topbar .nav {
-    min-width: 0;
-    flex: 1 1 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    flex-wrap: wrap;
-  }
-
-  .topbar .nav-profile {
-    margin-left: 8px;
-  }
+  .topbar { flex-wrap: wrap; row-gap: 8px; }
+  .topbar .nav { min-width: 0; flex: 1 1 auto; display: flex; align-items: center; justify-content: center; gap: 4px; flex-wrap: wrap; }
+  .topbar .nav-profile { margin-left: 8px; }
 }
 
 @media (max-width: 700px) {
-  .topbar {
-    padding-left: 12px;
-    padding-right: 12px;
-    align-items: center;
-  }
-
-  .topbar .brand {
-    flex: 0 0 auto;
-  }
-
-  .topbar .nav {
-    order: 3;
-    flex: 1 0 100%;
-    width: 100%;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding: 2px 0 5px;
-  }
-
-  .topbar .nav::-webkit-scrollbar {
-    display: none;
-  }
-
-  .topbar .nav a {
-    flex: 0 0 auto;
-    white-space: nowrap;
-  }
-
-  .topbar .nav-profile {
-    width: 38px;
-    height: 38px;
-    min-width: 38px;
-    margin-left: auto;
-    padding: 0;
-    border-radius: 50%;
-  }
-
-  .topbar .nav-profile[aria-label="Login / Register"] {
-    width: auto;
-    min-width: 108px;
-    height: 36px;
-    padding: 0 12px;
-    border-radius: 999px;
-  }
+  .topbar { padding-left: 12px; padding-right: 12px; align-items: center; }
+  .topbar .brand { flex: 0 0 auto; }
+  .topbar .nav { order: 3; flex: 1 0 100%; width: 100%; justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 2px 0 5px; }
+  .topbar .nav::-webkit-scrollbar { display: none; }
+  .topbar .nav a { flex: 0 0 auto; white-space: nowrap; }
+  .topbar .nav-profile { width: 38px; height: 38px; min-width: 38px; margin-left: auto; padding: 0; border-radius: 50%; }
+  .topbar .nav-profile[aria-label="Login / Register"] { width: auto; min-width: 108px; height: 36px; padding: 0 12px; border-radius: 999px; }
+  .profile-menu { position: fixed; top: 62px; right: 12px; width: min(286px, calc(100vw - 24px)); }
 }
 
 @media (max-width: 420px) {
-  .topbar .nav a {
-    padding-left: 8px;
-    padding-right: 8px;
-    font-size: 12px;
-  }
-
-  .topbar .nav-profile {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-  }
-
-  .topbar .nav-profile[aria-label="Login / Register"] {
-    min-width: 102px;
-    height: 34px;
-    padding: 0 10px;
-  }
-
-  .topbar .nav-profile[aria-label="Login / Register"] .nav-profile-fallback::before {
-    font-size: 12px;
-  }
+  .topbar .nav a { padding-left: 8px; padding-right: 8px; font-size: 12px; }
+  .topbar .nav-profile { width: 36px; height: 36px; min-width: 36px; }
+  .topbar .nav-profile[aria-label="Login / Register"] { min-width: 102px; height: 34px; padding: 0 10px; }
+  .topbar .nav-profile[aria-label="Login / Register"] .nav-profile-fallback::before { font-size: 12px; }
+  .profile-menu { top: 58px; right: 8px; width: calc(100vw - 16px); border-radius: 16px; }
 }
