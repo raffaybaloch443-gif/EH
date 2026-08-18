@@ -10,58 +10,23 @@
 <body>
   <header class="topbar" data-global-header>
     <a class="brand" href="index.html"><span class="brand-icon">&#8962;</span>EstateHub</a>
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="properties.html">Properties</a>
-      <a href="about.html">About Us</a>
-      <a href="messages.html">Contact</a>
-      <a href="favorites.html" id="favoriteLink">Favorites (0)</a>
-    </nav>
+    <nav class="nav"><a href="index.html">Home</a><a href="properties.html">Properties</a><a href="about.html">About Us</a><a href="messages.html">Contact</a><a href="favorites.html" id="favoriteLink">Favorites (0)</a></nav>
     <a class="nav-profile" href="profile.html" aria-label="Profile"><span class="nav-profile-fallback">U</span></a>
   </header>
-
   <div class="app-layout">
-    <aside class="sidebar">
-      <nav class="side-nav" aria-label="Dashboard navigation">
-        <a href="dashboard.html">⌂ Dashboard</a>
-        <a href="properties.html">▣ My Properties</a>
-        <a href="add-property.html">+ Add Property</a>
-        <a href="agreements.html">☰ My Agreements</a>
-        <a href="messages.html">✉ Messages</a>
-        <a class="active" href="profile.html">◉ Profile</a>
-      </nav>
-    </aside>
-
+    <aside class="sidebar"><nav class="side-nav" aria-label="Dashboard navigation"><a href="dashboard.html">⌂ Dashboard</a><a href="properties.html">▣ My Properties</a><a href="add-property.html">+ Add Property</a><a href="agreements.html">☰ My Agreements</a><a href="messages.html">✉ Messages</a><a class="active" href="profile.html">◉ Profile</a></nav></aside>
     <main class="app-main profile-page">
-      <h1>Profile</h1>
-      <div class="breadcrumb">Dashboard / Profile</div>
-
+      <h1>Profile</h1><div class="breadcrumb">Dashboard / Profile</div>
       <section class="panel profile-card">
-        <div class="profile-head">
-          <img id="profileAvatar" class="profile-avatar" src="./assets/img/default-avatar.svg" alt="Profile picture">
-          <div>
-            <h1 id="profileName">My Profile</h1>
-            <p id="profileEmail" class="profile-email">Your account information</p>
-            <span id="profileRole" class="profile-role">USER</span>
-          </div>
-        </div>
-
-        <div class="profile-fields">
-          <div class="profile-field"><label>Name</label><div id="nameValue" class="profile-field-value">—</div></div>
-          <div class="profile-field"><label>Email</label><div id="emailValue" class="profile-field-value">—</div></div>
-          <div class="profile-field"><label>Phone</label><div id="phoneValue" class="profile-field-value">—</div></div>
-          <div class="profile-field"><label>Location</label><div id="locationValue" class="profile-field-value">—</div></div>
-          <div class="profile-field"><label>Account Type</label><div id="roleValue" class="profile-field-value">—</div></div>
-        </div>
+        <div class="profile-head"><img id="profileAvatar" class="profile-avatar" src="./assets/img/default-avatar.svg" alt="Profile picture"><div><h1 id="profileName">My Profile</h1><p id="profileEmail" class="profile-email">Your account information</p><span id="profileRole" class="profile-role">USER</span></div></div>
+        <div class="profile-fields"><div class="profile-field"><label>Name</label><div id="nameValue" class="profile-field-value">—</div></div><div class="profile-field"><label>Email</label><div id="emailValue" class="profile-field-value">—</div></div><div class="profile-field"><label>Phone</label><div id="phoneValue" class="profile-field-value">—</div></div><div class="profile-field"><label>Location</label><div id="locationValue" class="profile-field-value">—</div></div><div class="profile-field"><label>Account Type</label><div id="roleValue" class="profile-field-value">—</div></div></div>
       </section>
     </main>
   </div>
-
   <script src="./js/script.js"></script>
+  <script src="./js/profile-menu.js"></script>
   <script>
     (function () {
-      const avatarLink = document.querySelector('.nav-profile');
-      if (avatarLink) avatarLink.setAttribute('href', 'profile.html');
       try {
         const raw = localStorage.getItem('loggedInUser') || localStorage.getItem('estatehubUser') || localStorage.getItem('user');
         const user = raw ? JSON.parse(raw) : {};
@@ -80,9 +45,7 @@
         document.getElementById('roleValue').textContent = String(role).toUpperCase();
         document.getElementById('profileRole').textContent = String(role).toUpperCase();
         if (avatar) document.getElementById('profileAvatar').src = avatar;
-      } catch (error) {
-        console.warn('Profile data could not be loaded.', error);
-      }
+      } catch (error) { console.warn('Profile data could not be loaded.', error); }
     })();
   </script>
 </body>
