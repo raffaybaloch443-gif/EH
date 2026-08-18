@@ -4,7 +4,7 @@
 <body>
   <header class="topbar" data-global-header><a class="brand" href="index.html"><span class="brand-icon">&#8962;</span>EstateHub</a><nav class="nav"><a href="index.html">Home</a><a href="properties.html">Properties</a><a href="about.html">About Us</a><a href="messages.html">Contact</a><a href="favorites.html" id="favoriteLink">Favorites (0)</a></nav><a class="btn dark hide-mobile" href="login.html" id="loginRegisterBtn">Login / Register</a></header>
   <div class="app-layout">
-    <aside class="sidebar"><nav class="side-nav"><a class="active" href="dashboard.html">&#8962; Dashboard</a><a href="dashboard.html">&#9635; My Properties</a><a href="add-property.html">+ Add Property</a><a href="agreements.html">&#9776; My Agreements</a><a href="messages.html">&#9993; Messages</a><a href="profile.html">&#9673; Profile</a></nav></aside>
+    <aside class="sidebar"><nav class="side-nav"><a class="active" href="dashboard.html">&#8962; Dashboard</a><a href="properties.html">&#9635; My Properties</a><a href="add-property.html">+ Add Property</a><a href="agreements.html">&#9776; My Agreements</a><a href="messages.html">&#9993; Messages</a><a href="profile.html">&#9673; Profile</a></nav></aside>
     <main class="app-main">
       <h1>Dashboard</h1>
       <div class="stats"><div class="stat"><strong>5</strong><span>My Properties</span></div><div class="stat"><strong>3</strong><span>Active Properties</span></div><div class="stat"><strong>12</strong><span>Total Inquiries</span></div><div class="stat"><strong>2</strong><span>Agreements</span></div></div>
@@ -15,5 +15,11 @@
   <footer class="site-footer" data-site-footer><div class="site-footer__inner"><div class="site-footer__grid"><div class="site-footer__brand"><a class="site-footer__logo" href="index.html" aria-label="EstateHub home"><span class="site-footer__logo-mark" aria-hidden="true">&#8962;</span><span>EstateHub</span></a><p>Connecting you to your perfect space. Leading properties, trusted agents, and seamless transactions.</p></div><nav class="site-footer__column" aria-label="Quick links"><h2>Quick Links</h2><a href="properties.html">For Sale</a><a href="properties.html?purpose=rent">For Rent</a><a href="properties.html">New Projects</a></nav><nav class="site-footer__column" aria-label="Company"><h2>Company</h2><a href="about.html">About Us</a><a href="about.html#agents">Our Agents</a><a href="messages.html">Contact</a></nav><div class="site-footer__column"><h2>Contact Us</h2><div class="site-footer__contact"><span>⌖</span><span>Block 4, Karachi, Pakistan</span></div><div class="site-footer__contact"><span>@</span><a href="mailto:info@estatehub.org">info@estatehub.org</a></div><div class="site-footer__contact"><span>☎</span><a href="tel:+9221111123456">+92 (21) 111-123-456</a></div></div><div class="site-footer__column site-footer__newsletter"><h2>Stay Updated</h2><p class="site-footer__newsletter-title">Subscribe to our Newsletter</p><form class="site-footer__form" data-validate="newsletter"><input type="email" name="email" placeholder="Enter your email address..." aria-label="Email address" required><button type="submit" class="site-footer__button">Subscribe</button></form></div></div><div class="site-footer__bottom">© 2026 EstateHub. All rights reserved.</div></div></footer>
   <button class="floating-contact" type="button" aria-label="Open EstateHub information">Info</button>
   <script src="./js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var avatar = document.querySelector('.nav-profile');
+      if (avatar) avatar.setAttribute('href', 'profile.html');
+    });
+  </script>
 </body>
 </html>
