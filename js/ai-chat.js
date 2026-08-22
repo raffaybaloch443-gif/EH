@@ -3,7 +3,7 @@
 // ================================
 
 // ======== CONFIG =========
-const API_KEY = "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";    
+const API_KEY = "";    
 const MODEL = "llama-3.3-70b-versatile";
 const API_URL = "https://api.groq.com/openai/v1/chat/completions";
 
